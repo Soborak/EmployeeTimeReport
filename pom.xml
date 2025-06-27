@@ -26,6 +26,11 @@
       <artifactId>poi</artifactId>
       <version>5.2.5</version>
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.logging.log4j</groupId>-->
+<!--      <artifactId>log4j-core</artifactId>-->
+<!--      <version>2.20.0</version>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
@@ -53,8 +58,31 @@
   </dependencies>
 
   <build>
+    <finalName>reporter</finalName>
     <plugins>
-      <!-- Umożliwia uruchamianie klasy Main z JAR-a -->
+      <!-- FAT JAR (wszystkie zależności w jednym pliku) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>pl.soborak.App</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Zwykły JAR (bez zależności) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>

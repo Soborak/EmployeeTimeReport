@@ -2,17 +2,20 @@ package pl.soborak;
 
 import java.util.Map;
 
+
 public class ConsolePrinter {
 
     public static void printAllRankings(RankingCalculator.Rankings rankings) {
-        System.out.println("=== Ranking pracowników wg przepracowanych godzin ===");
+
+        System.out.println("\n\n=== Ranking pracowników wg przepracowanych godzin ===\n");
         printRanking(rankings.employeeRanking, "Imię i nazwisko", "godzin");
 
-        System.out.println("\n=== Ranking miesięcy wg przepracowanych godzin ===");
+        System.out.println("\n\n=== Ranking miesięcy wg przepracowanych godzin ===\n");
         printRanking(rankings.monthRanking, "Miesiąc", "godzin");
 
-        System.out.println("\n=== 10 najbardziej pracowitych dni ===");
+        System.out.println("\n\n=== 10 najbardziej pracowitych dni ===\n");
         printRanking(rankings.topDaysRanking, "Data", "godzin");
+
     }
 
     private static void printRanking(Map<String, Double> ranking, String keyHeader, String unit) {

@@ -1,8 +1,7 @@
 package pl.soborak;
 
-import org.apache.poi.ss.usermodel.*;
 
-import java.text.SimpleDateFormat;
+import org.apache.poi.ss.usermodel.*;
 import java.util.Date;
 
 public class EmployeeRecord {

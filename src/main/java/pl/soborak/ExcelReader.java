@@ -8,6 +8,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
+
 public class ExcelReader {
 
     // Wczytaj wszystkie wpisy ze wszystkich plików Excela (.xls i .xlsx) z katalogu i podkatalogów
