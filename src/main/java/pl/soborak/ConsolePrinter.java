@@ -1,22 +1,29 @@
 package pl.soborak;
 
+import java.util.Map;
+
 public class ConsolePrinter {
 
     public static void printAllRankings(RankingCalculator.Rankings rankings) {
         System.out.println("=== Ranking pracowników wg przepracowanych godzin ===");
-        printRanking(rankings.employeeRanking, "godzin");
+        printRanking(rankings.employeeRanking, "Imię i nazwisko", "godzin");
 
         System.out.println("\n=== Ranking miesięcy wg przepracowanych godzin ===");
-        printRanking(rankings.monthRanking, "godzin");
+        printRanking(rankings.monthRanking, "Miesiąc", "godzin");
 
         System.out.println("\n=== 10 najbardziej pracowitych dni ===");
-        printRanking(rankings.topDaysRanking, "godzin");
+        printRanking(rankings.topDaysRanking, "Data", "godzin");
     }
 
-    private static void printRanking(java.util.Map<String, Double> ranking, String unit) {
+    private static void printRanking(Map<String, Double> ranking, String keyHeader, String unit) {
+        // Nagłówek tabeli
+        System.out.printf("| %-3s | %-30s | %-13s |\n", "LP", keyHeader, "Liczba " + unit);
+        System.out.println("|-----|--------------------------------|---------------|");
+
         int pos = 1;
         for (var entry : ranking.entrySet()) {
-            System.out.printf("%2d. %-30s - %.2f %s%n", pos++, entry.getKey(), entry.getValue(), unit);
+            System.out.printf("| %3d | %-30s | %13.2f |\n",
+                    pos++, entry.getKey(), entry.getValue());
         }
     }
 }
